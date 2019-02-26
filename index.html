@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>gra</title>
+  
+  
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+
+  <div class="container"> 
+	  <button id="rock" onclick="playerMove('rock')">rock</button> 
+	  <button id="paper" onclick="playerMove('paper')">paper</button>
+  <button id="scissors" onclick="playerMove('scissors')">scissors</button>  
+</div>
+<div class="container">
+  <div id="output"> 
+  </div>
+  <div class="scorebox">
+    <h4>results</h4>
+    <div class="number"><span id="X">0</span><br>
+      <p>Wins</p>
+    </div>   
+    <div class="number"><span id="divider">-</span></div>
+  <div class="number"><span id="Y">0</span><br>
+      <p>Loses</p>   
+    </div>
+  </div> 
+  <div id="rounds"></div>
+  <button id="newgame">new game</button>
+</div>
+  
+  
+
+    <script  src="js/index.js"></script>
+
+
+
+
+</body>
+
+</html>

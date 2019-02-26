@@ -1,0 +1,82 @@
+
+body {
+  padding: 10px;
+	text-align: center;
+}
+button {
+	display: inline-block;
+  padding: 20px;
+  margin: 10px;
+  width: 200px;
+    
+	font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: top;
+    text-transform: uppercase;
+
+	color: #fff;
+  background-color: #045b4d;
+	border: 2px solid #045b4d;
+  border-radius: 4px;
+    
+	transition: color .3s,          background-color .3s;
+
+  cursor: pointer;
+	outline: 0!important;
+	text-decoration: none;
+  touch-action: manipulation;
+  user-select: none;
+	
+	&:hover, &:active {
+		color: #045b4d;
+		background-color: #fff;
+	}
+}
+#output {
+ float:left;
+  border: 1px solid black;
+  border-radius: 20px;
+  height: 50px;
+  width: 200px;
+  text-align: center;
+  margin: 15px auto;
+  padding: 10px;
+}
+.scorebox {
+  border: 1px solid black;
+  border-radius: 20px;
+  height: 100px;
+  width: 180px;
+  margin: 15px auto;
+  padding: 10px;
+  vertical-align: top;
+    h4 {
+    margin: 10px 10px;
+    text-transform: uppercase;
+    font-weight: 500; 
+  }
+}
+.number {
+  display: inline-block;
+  padding: 0px;
+}
+#newgame {
+  background-color: #A43741;
+  border: 2px solid #A43741;
+transition: color .3s,          background-color .3s;
+  &:hover, &:active {
+		color:  #A43741;
+		background-color: #fff;
+  }
+}
+#rounds{
+  border: 1px solid black;
+  border-radius: 20px;
+  height: 50px;
+  width: 200px;
+  text-align: center;
+  margin: 15px auto;
+  padding: 10px;
+}
