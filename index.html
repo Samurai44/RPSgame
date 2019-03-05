@@ -1,48 +1,54 @@
 <!DOCTYPE html>
-<html lang="en" >
-
-<head>
-  <meta charset="UTF-8">
-  <title>gra</title>
-  
-  
-  
-      <link rel="stylesheet" href="css/style.css">
-
-  
-</head>
-
-<body>
-
-  <div class="container"> 
-	  <button id="rock" onclick="playerMove('rock')">rock</button> 
-	  <button id="paper" onclick="playerMove('paper')">paper</button>
-  <button id="scissors" onclick="playerMove('scissors')">scissors</button>  
-</div>
-<div class="container">
-  <div id="output"> 
-  </div>
-  <div class="scorebox">
-    <h4>results</h4>
-    <div class="number"><span id="X">0</span><br>
-      <p>Wins</p>
-    </div>   
-    <div class="number"><span id="divider">-</span></div>
-  <div class="number"><span id="Y">0</span><br>
-      <p>Loses</p>   
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>gra</title>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <div class="container">
+  	  <button id="rock" data-move="rock" class="player-move">rock</button>
+  	  <button id="paper" data-move="paper" class="player-move">paper</button>
+      <button id="scissors" data-move="scissors" class="player-move">scissors</button>
     </div>
-  </div> 
-  <div id="rounds"></div>
-  <button id="newgame">new game</button>
-</div>
-  
-  
-
-    <script  src="js/index.js"></script>
-
-
-
-
-</body>
-
+    <div class="container">
+      <div id="output">
+      </div>
+      <div class="scorebox">
+        <h4>results</h4>
+        <div class="number"><span id="wins">0</span><br>
+          <p>Wins</p>
+        </div>
+        <div class="number"><span id="divider">-</span></div>
+        <div class="number"><span id="looses">0</span><br>
+          <p>Loses</p>
+        </div>
+      </div>
+      <div id="rounds"></div>
+      <button id="newgame">new game</button>
+    </div>
+    <div class="overlay" id="modal-overlay">
+    	<div class="modal" id="gameover">
+    		<a href="#" class="close">x</a>
+    		<header>game over</header>
+    		<div id="content"></div>
+        <div id="modalContent"></div>
+    	</div>
+    	<!--<div class="modal" id="modal-two">
+    		<a href="#" class="close">x</a>
+    		<header>Modal two</header>
+    		<div class="content">
+    			<p>Dolor sit amet!</p>
+    		</div>
+    	</div>
+    	<div class="modal" id="modal-three">
+    		<a href="#" class="close">x</a>
+    		<header>Modal three</header>
+    		<div class="content">
+    			<p>Dolor sit amet!</p>
+    		</div>
+    	</div>-->
+    </div>
+    <script  src="js/script.js"></script>
+  </body>
 </html>
