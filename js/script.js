@@ -2,29 +2,56 @@
 var output = document.getElementById('output');
 var playerChoice;
 var params = {
-    roundsleft: 0,
+    roundsLeft: 0,
+    roundsPlayed: 1,
     wins: 0,
     looses: 0,
     progress: [],
+};
+var clear = function(){
+  params.roundsLeft = 0;
+  params.roundsPlayed = 1;
+  params.wins = 0;
+  params.looses = 0;
+  params.progress.length = 0;
 };
 
 // Check if there is a Winner
 
 function checkWinner() {
     if (params.roundsLeft <= params.wins) {
+
+        console.log(params);
+        var progressHtml = '';
+        for (var i = 0; i < params.progress.length; i++) {
+          progressHtml += '<div>' + '<table>' + '<tr><th>' + 'Round:' + '</th>' + '' + '<th>' + 'Player chose:' + '</th>' + '' + '<th>'
+          + 'Computer chose:' + '</th>' + '' + '<th>' + 'Player score' + '</th>' + '' + '<th>' + 'Computer score' + '</th></tr'
+          + '<br>' + '<tr><td>' + params.progress[i].round + '</td>' + '<td>'  + params.progress[i].player + '</td>' + '<td>' + params.progress[i].computer
+          + '</td>' + '<td>' + params.progress[i].playerScore + '</td>' + '<td>' + params.progress[i].compScore + '</td></table>' + '<br>'
+          +  '<br><br>' + '</div>';
+      }
+
         showModal();
         document.getElementById('content').innerHTML = 'You won the entire game!' + '<br>';
-        document.getElementById('modalContent').innerHTML = '<br>' + params.progress;
-        params.roundsLeft = 0;
-        params.wins = 0;
-        params.looses = 0;
+        document.getElementById('modalContent').innerHTML = '<br>' + progressHtml;
+        clear();
+
     } else if (params.roundsLeft <= params.looses) {
+
+        console.log(params);
+        var progressHtml = '';
+        for (var i = 0; i < params.progress.length; i++) {
+          progressHtml += '<div>' + '<table>' + '<tr><th>' + 'Round:' + '</th>' + '' + '<th>' + 'Player chose:' + '</th>' + '' + '<th>'
+          + 'Computer chose:' + '</th>' + '' + '<th>' + 'Player score' + '</th>' + '' + '<th>' + 'Computer score' + '</th></tr'
+          + '<br>' + '<tr><td>' + params.progress[i].round + '</td>' + '<td>'  + params.progress[i].player + '</td>' + '<td>' + params.progress[i].computer
+          + '</td>' + '<td>' + params.progress[i].playerScore + '</td>' + '<td>' + params.progress[i].compScore + '</td></table>' + '<br>'
+          +  '<br><br>' + '</div>';
+      }
+
         showModal();
         document.getElementById('content').innerHTML = 'You lost the entire game!' + '<br>';
-        document.getElementById('modalContent').innerHTML = '<br>' + params.progress;
-        params.roundsLeft = 0;
-        params.wins = 0;
-        params.looses = 0;
+        document.getElementById('modalContent').innerHTML = '<br>' + progressHtml;
+        clear();
     }
 }
 // Attach player's choice to buttons
@@ -34,12 +61,34 @@ var choice = function(event) {
     var clickedElement = event.target;
     playerChoice = clickedElement.getAttribute('data-move')
     playerMove(playerChoice);
+    params.roundsPlayed++;
 };
 
 var move = document.querySelectorAll('.player-move');
 for (var i = 0; i < move.length; i++) {
     move[i].addEventListener('click', choice);
 };
+
+// Function which compares two choices
+
+        var compare = function(choice1, choice2) {
+            var p = {
+                'rock': 'scissors',
+                'scissors': 'paper',
+                'paper': 'rock'
+            }
+            if (choice1 == choice2) {
+                return '<br>' + 'It is a Tie!';
+            } else if (p[choice1] == choice2) {
+                params.wins++;
+                checkWinner();
+                return '<br>' + 'You won!';
+            } else {
+                params.looses++;
+                checkWinner();
+                return '<br>' + 'You lost!';
+            }
+        }
 
 // Function triggered after choosing a button
 
@@ -63,26 +112,6 @@ var playerMove = function(playerChoice) {
 
         output.innerHTML += ' ' + 'computer played' + ' ' + compChoice + '.';
 
-// Function which compares two choices
-
-        var compare = function(choice1, choice2) {
-            var p = {
-                'rock': 'scissors',
-                'scissors': 'paper',
-                'paper': 'rock'
-            }
-            if (choice1 == choice2) {
-                return '<br>' + 'It is a Tie!';
-            } else if (p[choice1] == choice2) {
-                params.wins++;
-                checkWinner();
-                return '<br>' + 'You won!';
-            } else {
-                params.looses++;
-                checkWinner();
-                return '<br>' + 'You lost!';
-            }
-        }
     };
 
 // Compare players' and computer's choices
@@ -95,17 +124,17 @@ var playerMove = function(playerChoice) {
 // Create an object to fill the "game over" modal
 
     var modalcontent = {
-      round: params.roundsleft,
-      player: params.wins,
-      computer: params.looses,
-      //result: ,
-      //score: ,
+      round: params.roundsPlayed,
+      player: playerChoice,
+      computer: compChoice,
+      playerScore: params.wins,
+      compScore: params.looses,
     };
 
 // Attach the data to the array after each round
 
-    params.progress.push(modalcontent);
-    
+     params.progress.push(modalcontent);
+
 };
 
 var newgame = document.getElementById('newgame');
